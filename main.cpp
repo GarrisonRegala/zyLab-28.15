@@ -1,23 +1,22 @@
-#ifndef PLAYLISTNODE_H
-#define PLAYLISTNODE_H
-
+#ifndef PLIST_H
+#define PLIST_H
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 class PlaylistNode {
 public:
     PlaylistNode();
     PlaylistNode(string id, string songname, string artist, int length);
-
-    string GetID() const;
-    string GetSongName() const;
-    string GetArtistName() const;
-    int GetSongLength() const;
-    PlaylistNode* GetNext() const;
-    void InsertAfter(PlaylistNode* nodePtr);
-    void SetNext(PlaylistNode* nodePtr);
-    void PrintPlaylistNode() const;
+    void InsertAfter(PlaylistNode *ptr);
+    void SetNext(PlaylistNode* ptr);
+    string GetID();
+    string GetSongName();
+    string GetArtistName();
+    int GetSongLength();
+    PlaylistNode* GetNext();
+    void PrintPlaylistNode();
 
 private:
     string uniqueID;
@@ -26,6 +25,22 @@ private:
     int songLength;
     PlaylistNode* nextNodePtr;
 };
+
+class Playlist {
+private:
+    PlaylistNode *head;
+    PlaylistNode *tail;
+
+public:
+    Playlist();
+    void AddSong(string id, string songname, string arist, int length);
+    bool RemoveSong(string id);
+    void PrintList();
+    bool ChangePosition(int oldPos, int newPos);
+    void SongsByArtist(string artist);
+    int TotalTime();
+};
+
 
 #endif
 
